@@ -1,0 +1,57 @@
+{% if paginator.total_pages > 1 %}
+<div class="main-container">
+  <div class="mainbody">
+    <div class="pagination">
+      <ul>
+      {% if paginator.previous_page %}
+          <li class="prev">
+          {% if paginator.previous_page == 1 %}<a href="/">&larr; 上一页</a>
+          {% else %}<a href="/page{{ paginator.previous_page }}">&larr; 上一页</a>
+          {% endif %}
+          </li>
+      {% else %}
+          <li class="prev disabled"><a>&larr; 上一页</a></li>
+      {% endif %}
+      {% assign pageSize = 3 %}
+      {% assign startPage = paginator.page | minus:pageSize %}
+      {% assign endPage = paginator.page | plus:pageSize %}
+      {% assign lastStart = paginator.total_pages | minus:7 %}
+      {% if startPage > lastStart %}
+          {%assign startPage = lastStart %}
+      {% endif %}
+      {% if 1 > startPage %}
+          {%assign startPage = 1 %}
+      {% endif %}
+      {% if 8 > endPage %}
+          {%assign endPage = 7 %}
+      {% endif %}
+      {% if endPage > paginator.total_pages %}
+          {%assign endPage = paginator.total_pages %}
+      {% endif %}
+      {% if startPage != 1 %}
+          <li><a href="/page{{startPage | minus:1}}/">...</a></li>
+      {% endif %}
+      {% for count in (startPage..endPage) %}
+          {% if paginator.page == count %}
+              <li class="disabled"><a>{{ count }}</a></li>
+          {% else %}
+              {% if count == 1 %}<li><a href="/">1</a></li>
+              {% else %}<li><a href="/page{{count}}/">{{count}}</a></li>
+              {% endif %}
+          {% endif %}
+      {% endfor %}
+      {% if endPage != paginator.total_pages %}
+          <li><a href="/page{{endPage | plus:1}}/">...</a></li>
+      {% endif %}
+
+      {% if paginator.next_page %}
+          <li class="next"><a href="/page{{ paginator.next_page }}">下一页 &rarr;</a></li>
+      {% else %}
+          <li class="next disabled"><a>下一页 &rarr;</a></li>
+      {% endif %}
+      <li><a href="#">共{{paginator.total_pages}}页</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endif %}
