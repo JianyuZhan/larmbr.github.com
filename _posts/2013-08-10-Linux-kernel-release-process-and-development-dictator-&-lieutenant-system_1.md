@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux内核发布模式与开发组织模式(1)"
-tagline: "Linux kernel release process and developemnt lieutenant system(1)"
+tagline: "Linux kernel release process and development dictator & lieutenant system(1)"
 description: ""
 tags: [Linux内核, 内核开发]
 ---

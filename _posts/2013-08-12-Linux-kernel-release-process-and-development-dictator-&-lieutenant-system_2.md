@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux内核发布模式与开发组织模式(2)"
-tagline: "Linux kernel release process and developemnt lieutenant system(2)"
+tagline: "Linux kernel release process and development dictator & lieutenant system(2)"
 description: ""
 tags: [Linux内核, 内核开发]
 ---
@@ -12,11 +12,9 @@ tags: [Linux内核, 内核开发]
 
 # 开发组织模式
 
-Linux在v2.6版本释出后, 逐渐形成了一套稳定的发布模式, 相应地, 也形成了一套**基于信任链**的层级组织模式。虽说Linux是去中心化的全球合作开发的典型案例, 但项目发展到庞大如斯, 仍然会有一个中心, 这个中心就是Linus本人维护的**mainline tree**(也叫**vanilla tree**)。在前文说的发布模式的稳定下来后, 这个分支会定期地(2-3个月)发布一个版本, 是为2.6时代的**v2.6.X**, 及3.0时代的**v3.X**。
+Linux作为迄今全球规范最庞大开源合作项目, 在20多年的发展过程中, 逐渐形成一套**基于信任链**的层级组织模式, 这套模式有个术语叫**司令官与副官工作流(dictator and lieutenat workflow)**。在这种模式中, 有若干个管理员, 分别负责项目中的特定部分，是为副官(lieutenant); 所有这些管理员头上还有一位负责统筹的总管理员，是为司令官(dictator)。司令官维护的版本库用于提供给所有项目协作者(不仅仅是副官, 还可以包括来自全球的"士兵"), 以供他们拉取集成的项目代码。具体到Linux项目, 这种模式是这样运作的:
 
-全球的开发者贡献的补丁, 基本都以进入**mainline**为愿。早在10来年前, Linux的规模就已经不是一个人能掌控得了, 没有一个人能亲自review所有的补丁。因此, Linux在发展过程中逐渐探索出一套叫developemnt lieutenant system的**金字塔式层次组织模式**: 
-
-    Linus作为项目领导者, 掌控大局, 把握项目发展方向。若干核心开发者, 则各自维护自己的以`mainline`为upstream的分支, 或者负责某一子系统, 比如核心子系统, 内存管理子系统, etc; 或者负责一个特性分支, 作为新功能试验场, 然后再把可接受的新功能并入`mainline`。而子系统分支下, 可能又有细分的分支, 由若干维护者专门维护。正是这种基于`信任链`的层级模式, 有效地组织起全球数以千计的开发者。
+    Linus作为项目司令官(dictator), 掌控大局, 把握项目发展方向, 并维护着一个权威的中心版本库, 叫做`mainline分支`。若干骨干开发者, 作为副官(lieutenant), 维护着各个子系统分支, 比如核心子系统, 内存管理子系统, 网络子系统, etc。这些子系统分支以`mainline分支`为`上游`(upstream)。 定期或不定期地, Linus会把各子系统分支合并进`mainline分支`。 在子系统分支下, 可能又有细分的分支, 同样遵循着类似的流程。 按照这种方式, Linux社区构建起一套基于`信任链`的层级开发组织模式, 有效地组织起全球数以千计的开发者。
 
 从v2.6时代, 确立并持续到今天的一个新版本的开发流程大概是这样的[[1]](#jmp1):
 
@@ -202,7 +200,7 @@ Linux在v2.6版本释出后, 逐渐形成了一套稳定的发布模式, 相应�
 
 ## -stable分支
 
-**-stable分支**顾名思义就是稳定的分支, 它现在主要由[Greg Kroah-Hartman](http://www.linux.com/news/special-feature/linux-developers/717573-3    0-linux-kernel-developer-workspaces-in-30-weeks-greg-kroah-hartman)在维护。它的目的在于**对已经发布的正式版本(比如v2.6时代的v2.6.X, 及v3.0时代的v3.X)的后续维护, 只包括一些bugfix或安全补丁, 不包括功能补丁。** 每当Linus发布一个新版本, 就把它丢给Greg K-H,进入**-stable分支** 由他带领的团队来维护。不定期地, Greg K-H会拣选出一些bugfix或安全补丁, 然后发布一个修订版(比如v2.6时代的v2.6.X.Y, 及v3.0时代的v3.X.Y)。对于大多数版本, 在下一版本出来后不久, 该版本的**-stable分支**维护工作就将结束, 它会被标上EOF(End Of Life)标记; 也有一些版本, 会被标记上LTS(Long Term Support)而长期支持。
+**-stable分支**顾名思义就是稳定的分支, 它现在主要由[Greg Kroah-Hartman](http://www.linux.com/news/special-feature/linux-developers/717573-3    0-linux-kernel-developer-workspaces-in-30-weeks-greg-kroah-hartman)在维护。它的目的在于**对已经发布的正式版本(比如v2.6时代的v2.6.X, 及v3.0时代的v3.X)的后续维护, 只包括一些bugfix或安全补丁, 不包括功能补丁。** 每当Linus发布一个新版本, 就把它丢给Greg K-H,进入**-stable分支** 由他带领的团队来维护。不定期地, Greg K-H会拣选出一些bugfix或安全补丁, 然后发布一个修订版(比如v2.6时代的v2.6.X.Y, 及v3.0时代的v3.X.Y)。对于大多数版本, 在下一版本出来后不久, 该版本的**-stable分支**维护工作就将结束, 它会被标上EOF(End Of Life)标记; 也有一些版本, 会被标记上LTS(Long Term Support)而长期支持。内核源码中`Documentation/stable_kernel_rules.txt`详细解释了如何投递补丁到这一分支。
 
 这个分支的诞生说来也有一番曲折。早在**v2.6.11**之前, 是没有对已经发布的版本发由后续修订版这一惯例的。如前一篇文章所说, 在**v2.6**时代以前, Linux的发布模式是**维护一个奇数号(如v2.3)的开放版本2-3年, 等到它非常稳定了, 再升级到稳定版本号释放出来。** 这种文火熬老汤的做法, 能保证发行版本出来后非常稳定。进入**v2.6**后, Linux社区抛弃了这种漫长的发布周期模式; 直接在2.6版本上开发新功能, 以Andrew Morton的**-mm分支**代替之前的奇数版本号开发版本的功能, 作为新功能的试验场, 采用较短周期的开发模式。仅一年就从**v2.6.0**发布到**v2.6.10**, 尽管整个社区都对代码质量有严格管控, 但仍免不了每个版本都有测试不充分的补丁进入, 导致不少问题, 比如**v2.6.8**发布当天就暴露了NFS代码一个重大错误, 无可奈何下, 当天Linus就又发布了一个修订版本**v2.6.8.1**, 历史上**第一次引入发布新版本后, 再发布修订版本**。对于快速开发而引进的缺乏足够测试的先天痼疾, Linus有想过稍微改变下模式, 但开发者们并不看好。于是, 亡羊补牢成了一个比较务实的做法。Greg K-H就勇敢地[承担](http://lwn.net/Articles/126785/)了这一在Linus看来"无趣, 吃力不讨好"的工作, 还定下了这一分支的["三条五例"](http://lwn.net/Articles/126915/)。
 
