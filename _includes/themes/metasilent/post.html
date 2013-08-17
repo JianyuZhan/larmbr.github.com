@@ -6,7 +6,7 @@
 	  <div class="post-title-area">
 	    <h1>{{ page.title }} </h1>
             <p>
-              <strong>{{ site.author.name }}</strong>  |  <strong>{{ page.date | date: "%Y-%m-%d" }}</strong>  |  {% for tag in page.tags %}<a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" rel="nofollow">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}{% endfor %}
+              <strong>{{ site.author.name }}</strong>  |  <strong>{{ page.date | date: "%Y-%m-%d" }}</strong>  | Tags: {% for tag in page.tags %}<a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" rel="nofollow">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}{% endfor %}
             </p>
           </div>
         {{ content }}

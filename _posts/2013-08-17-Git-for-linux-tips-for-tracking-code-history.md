@@ -2,7 +2,8 @@
 layout: post
 title: "Git for Linux: 追踪代码历史的技巧"
 tagline: "Git for Linux: tips for tracking code history"
-description: ""
+description: "Git for Linux: tips for tracking code history"
+categories: [git]
 tags: [Linux内核, Git]
 ---
 {% include JB/setup %}

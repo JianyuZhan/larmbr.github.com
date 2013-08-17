@@ -6,6 +6,19 @@
 
 <div class="side-container">
   <div class="sidebar">
+    {% unless site.categories == empty %}
+     <h3>Categories</h3>
+     <ul class="side_ul">
+       {% for category in site.categories %}
+         <li><a href="{{ site.url }}/categories/{{ category | first  }}.html">{{category | first}}({{category | last | size}})</a></li>
+       {% endfor  %}  
+     </ul>
+    {% endunless %}
+  </div>
+</div>
+
+<div class="side-container">
+  <div class="sidebar">
     {% unless site.posts == empty %}
     <h3>Recent Posts</h3>
     <ul>
