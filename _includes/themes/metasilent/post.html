@@ -60,56 +60,6 @@
   </div>
   
   <div class="span3">
-    <div class="side-container">
-      <div class="sidebar">
-        <wb:follow-button uid="1875748187" type="red_1" width="63" height="24" ></wb:follow-button>
-      </div>
-    </div>
-     
-    <div class="side-container">
-      <div class="sidebar">
-        {% unless site.posts == empty %}
-        <h3>Recent Posts</h3>
-        <ul>
-        {% for post in site.posts limit: 10 %}
-          <li><span>{{ post.date | date: "%Y-%m-%d" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">
-            {{post.title }}</a></li>
-        {% endfor %}
-        </ul>
-        {% endunless %}
-      </div>
-    </div>
-
-    <div class="side-container">
-      <div class="sidebar">
-        {% unless site.tags == empty %}
-        <h3>Tags</h3>
-        <ul class="inline tag_box">
-        {% assign tags_list = site.tags %}
-        {% include JB/tags_list %}
-        </ul>
-        {% endunless %}      
-      </div>
-    </div>
-
-    <!--<div class="side-container">
-      <div class="sidebar">
-        <h4>Published</h4>
-        <div class="date"><span>{{ page.date | date: "%Y-%m-%d" }}</span></div>
-      </div>
-    </div>-->
-
-    <!--<div class="side-container">
-      <div class="sidebar">
-        {% unless page.tags == empty %}
-          <h4>Tags</h4>
-          <ul class="tag_box">
-          {% assign tags_list = page.tags %}
-          {% include JB/tags_list %}
-          </ul>
-        {% endunless %}        
-      </div>
-    </div>-->
-
+    {% include themes/metasilent/sidebar.html %}
   </div>
 </div>
