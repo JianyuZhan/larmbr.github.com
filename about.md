@@ -26,7 +26,6 @@ Linux内核，逆向反汇编，C语言。
 ### 联系我
 
 * Email : nasa4836 ~~NO_SPAM~~ AT gmail DOT com
-* 新浪微博: [larmbr宇][weibo]
 
 [weibo]: http://weibo.com/larmbr4836
 [CC]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh
