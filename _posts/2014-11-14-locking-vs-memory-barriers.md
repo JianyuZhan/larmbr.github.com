@@ -3,7 +3,7 @@ layout: post
 title: "锁与内存屏障"
 tagline: "Locking vs memory barriers"
 description: "Locking vs memory barriers"
-categories: [linux内核, 同步机制]
+categories: [linux内核, 多线程编程]
 tags: [Linux内核, 同步机制]
 ---
 {% include JB/setup %}

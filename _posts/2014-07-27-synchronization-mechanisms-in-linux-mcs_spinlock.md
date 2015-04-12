@@ -3,7 +3,7 @@ layout: post
 title: "Linux同步机制--可取消的MCS自旋锁"
 tagline: "Synchronization mechanisms in Linux: cancelable mcs_spinlock"
 description: "Synchronization mechanisms in Linux: cancelable mcs_spinlock"
-categories: [linux内核, 同步机制]
+categories: [linux内核, 多线程编程]
 tags: [Linux内核, 同步机制, MCS自旋锁]
 ---
 {% include JB/setup %}
