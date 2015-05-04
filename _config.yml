@@ -14,7 +14,7 @@ description_length: 200
 # so be sure to set them if your theme uses them.
 #
 title : Just another kernel n00b
-address: larmbr.me
+address: larmbr.com
 tagline: 无物方有物
 author :
   name : larmbr
@@ -35,7 +35,7 @@ sina_weibo_uid: 1875748187
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://larmbr.me
+production_url : http://larmbr.com
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
